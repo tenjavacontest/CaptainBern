@@ -17,5 +17,4 @@ public class BetterThanHorses extends JavaPlugin {
     public void onEnable() {
 
     }
-
 }
