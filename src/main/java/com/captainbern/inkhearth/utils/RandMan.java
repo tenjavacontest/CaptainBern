@@ -13,4 +13,13 @@ public class RandMan {
     public static int nextInt() {
         return random.nextInt();
     }
+
+    /**
+     * Returns a random int within the given bounds.
+     * @param i Bounds.
+     * @return
+     */
+    public static int nextInt(int i) {
+        return random.nextInt(i);
+    }
 }
