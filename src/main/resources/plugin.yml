@@ -1,0 +1,3 @@
+name: InkHearth
+version: ${project.version}
+main: com.captainbern.inkhearth.InkHearth
