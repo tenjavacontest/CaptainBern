@@ -19,7 +19,7 @@ public class PlayerUtil {
      * @param packet The packet object.
      */
     public static void sendPacket(Player player, Packet packet) {
-        Method sendPacket = ReflectionUtil.getMethod(ReflectionUtil.getNMSClass("playerConnection"), "sendPacket", ReflectionUtil.getNMSClass("Packet"));
+        Method sendPacket = ReflectionUtil.getMethod(ReflectionUtil.getNMSClass("PlayerConnection"), "sendPacket", ReflectionUtil.getNMSClass("Packet"));
         Object playerConnection = getPlayerConnection(player);
 
         try {
@@ -50,7 +50,7 @@ public class PlayerUtil {
      * @return The PlayerConnection object.
      */
     public static Object getPlayerConnection(Player player) {
-        Object playerConnection = ReflectionUtil.getField(ReflectionUtil.getNMSClass("EntityPlayer"), "playerConnection", player);
+        Object playerConnection = ReflectionUtil.getField(ReflectionUtil.getNMSClass("EntityPlayer"), "playerConnection", playerToEntityPlayer(player));
         return playerConnection;
     }
 }
