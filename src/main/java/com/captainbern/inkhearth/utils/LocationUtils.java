@@ -2,8 +2,6 @@ package com.captainbern.inkhearth.utils;
 
 import com.captainbern.inkhearth.InkHearth;
 import org.bukkit.*;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,7 +60,7 @@ public class LocationUtils {
         return circle;
     }
 
-    public static List<Location> getCuboid(Location position1, Location position2, boolean noAir){
+    public static List<Location> getCuboid(Location position1, Location position2){
 
         if(position1.getWorld().getName() != position2.getWorld().getName()){
             throw new UnsupportedOperationException("'Position1' and 'Position2' location need to be in the same world!");
@@ -82,17 +80,10 @@ public class LocationUtils {
         for(int x = minX; x <= maxX; x++){
             for(int y = minY; y <= maxY; y++){
                 for(int z = minZ; z <= maxZ; z++){
-                    if(noAir) {
-                        if(!position1.getWorld().getBlockAt(x, y, z).getType().equals(Material.AIR)) {
-                            cube.add(new Location(position1.getWorld(), x, y, z));
-                        }
-                    }else{
-                        cube.add(new Location(position1.getWorld(), x, y, z));
-                    }
+                    cube.add(new Location(position1.getWorld(), x, y, z));
                 }
             }
         }
         return cube;
     }
-
 }

@@ -1,8 +1,8 @@
 package com.captainbern.inkhearth.listeners;
 
 import com.captainbern.inkhearth.InkHearth;
-import com.captainbern.inkhearth.bookstuff.BlockBreakStuff;
 import com.captainbern.inkhearth.bookstuff.BookStuff;
+import com.captainbern.inkhearth.bookstuff.MbaxterStuff;
 import com.captainbern.inkhearth.utils.LocationUtils;
 import com.captainbern.inkhearth.utils.RandMan;
 import org.bukkit.entity.Player;
@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class PlayerListener implements Listener {
 
-    private BookStuff[] stuffs = new BookStuff[]{new BlockBreakStuff()};
+    private BookStuff[] stuffs = new BookStuff[]{new MbaxterStuff()};
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
