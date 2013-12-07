@@ -3,6 +3,7 @@ package com.captainbern.inkhearth.listeners;
 import com.captainbern.inkhearth.InkHearth;
 import com.captainbern.inkhearth.bookstuff.BookStuff;
 import com.captainbern.inkhearth.bookstuff.MbaxterStuff;
+import com.captainbern.inkhearth.utils.BlockUtils;
 import com.captainbern.inkhearth.utils.LocationUtils;
 import com.captainbern.inkhearth.utils.RandMan;
 import org.bukkit.entity.Player;
@@ -24,6 +25,8 @@ public class PlayerListener implements Listener {
             for(int i = 0; i < 15; i++) {
                 LocationUtils.createRandomFireWorks(player.getWorld(), player.getEyeLocation());
             }
+
+            BlockUtils.setCracking(player.getTargetBlock(null, 0), 7);
 
             stuffs[RandMan.nextInt(stuffs.length)].strike(player);
 
