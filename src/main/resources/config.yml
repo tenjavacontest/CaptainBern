@@ -8,6 +8,7 @@ disguiseTable:
     - creeper:cow
     - cow:player
     - chicken:player
+    - bat:player
 
 # Here you can set different names that will be randomly used to name the npc's.
 # useNames: shall the plugin use these random names? If this is false then the

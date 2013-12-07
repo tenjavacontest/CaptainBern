@@ -29,4 +29,8 @@ public class EntityTable {
     public HashMap<EntityType, EntityType> getLookUpTable() {
         return LOOKUP;
     }
+
+    public boolean contains(EntityType type) {
+        return LOOKUP.containsKey(type);
+    }
 }

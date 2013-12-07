@@ -3,6 +3,8 @@ package com.captainbern.doge;
 import com.captainbern.doge.listener.PlayerListener;
 import com.captainbern.doge.logger.ModuleLogger;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -44,6 +46,8 @@ public class Doge extends JavaPlugin {
         pluginManager.registerEvents(new PlayerListener(), this);
 
         INSTANCE = this;
+
+        checkEntities();
     }
 
     public static Doge getInstance() {
@@ -51,5 +55,13 @@ public class Doge extends JavaPlugin {
             LOGGER.warning("Plugin not enabled!");
         }
         return INSTANCE;
+    }
+
+    private void checkEntities() {
+        for(World world : Bukkit.getWorlds()) {
+            for(Entity entity : world.getEntities()) {
+                PlayerListener.disguiseMob(entity);
+            }
+        }
     }
 }

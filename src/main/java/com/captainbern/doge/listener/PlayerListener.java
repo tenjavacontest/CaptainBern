@@ -23,6 +23,8 @@ import java.util.List;
 
 public class PlayerListener implements Listener {
 
+    private static final List<EntityType> entities = Arrays.asList(EntityType.values());
+
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
 
@@ -45,17 +47,16 @@ public class PlayerListener implements Listener {
             public void run() {
                 disguiseMob(event.getEntity());
             }
-        }, 20L);
+        }, 10L);
     }
 
     /**
      * Method used to disguise a specific mob
      * @param mob The mob that needs to be disguised.
      */
-    public void disguiseMob(Entity mob) {
-        if(Doge.DO_RANDOM) {
+    public static void disguiseMob(Entity mob) {
+        if(Doge.DO_RANDOM == true) {
 
-            List<EntityType> entities = Arrays.asList(EntityType.values());
             EntityType disguise = entities.get(RandMan.nextInt(entities.size()));
 
             if(disguise.equals(EntityType.PLAYER)) {
@@ -64,29 +65,31 @@ public class PlayerListener implements Listener {
                 }else{
                     sendPacket(PacketCrafter.craftHumanPacket(mob, mob.getClass().getSimpleName(), 0), mob.getWorld());
                 }
+            }else{
+                sendPacket(PacketCrafter.craftMobPacket(mob, disguise), mob.getWorld());
             }
 
         }else{
             EntityTable table = Doge.TABLE;
 
-            if(table.getDisguiseIdFor(mob.getType()) != null) {
+            if(!table.contains(mob.getType()))
+                return;
 
-                EntityType disguise = table.getDisguiseIdFor(mob.getType());
+            EntityType disguise = table.getDisguiseIdFor(mob.getType());
 
-                if(disguise.equals(EntityType.PLAYER)) {
-                    if(Doge.USE_NAMES) {
-                        sendPacket(PacketCrafter.craftHumanPacket(mob, Doge.NAMES.get(RandMan.nextInt(Doge.NAMES.size())), 0), mob.getWorld());
-                    }else{
-                        sendPacket(PacketCrafter.craftHumanPacket(mob, mob.getClass().getSimpleName(), 0), mob.getWorld());
-                    }
+            if(disguise.equals(EntityType.PLAYER)) {
+                if(Doge.USE_NAMES) {
+                    sendPacket(PacketCrafter.craftHumanPacket(mob, Doge.NAMES.get(RandMan.nextInt(Doge.NAMES.size())), 0), mob.getWorld());
                 }else{
-                    sendPacket(PacketCrafter.craftMobPacket(mob, table.getDisguiseIdFor(mob.getType())), mob.getWorld());
+                    sendPacket(PacketCrafter.craftHumanPacket(mob, mob.getClass().getSimpleName(), 0), mob.getWorld());
                 }
+            }else{
+                sendPacket(PacketCrafter.craftMobPacket(mob, table.getDisguiseIdFor(mob.getType())), mob.getWorld());
             }
         }
     }
 
-    private void sendPacket(Packet packet, World world) {
+    private static void sendPacket(Packet packet, World world) {
         for(Player player : Bukkit.getOnlinePlayers()) {
             if(!player.getWorld().equals(world))
                 continue;

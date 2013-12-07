@@ -13,12 +13,14 @@ public class PacketCrafter {
         packet.setEntityType(newType);
         packet.setLocation(originalEntity.getLocation());
         packet.setId(originalEntity.getEntityId());
-        packet.setAP((byte) 0);
 
         DataWatcher dataWatcher = new DataWatcher();
-        dataWatcher.write(0, (Object) (byte) 0);
-        dataWatcher.write(1, (Object) (short) 0);
-        dataWatcher.write(8, (Object) (byte) 0);
+        dataWatcher.write(0, (byte) 0);
+        dataWatcher.write(6, (float) 20);
+        dataWatcher.write(7, 0);
+        dataWatcher.write(8,(byte) 0);
+        //dataWatcher.write(10, (String) name);
+        dataWatcher.write(11, (Byte) (byte) 1);
 
         packet.setDataWatcher(dataWatcher);
 
