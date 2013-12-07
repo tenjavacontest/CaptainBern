@@ -1,0 +1,11 @@
+# Here you can define what mob should be disguised as what. You can also set it to random
+# (setting it to random will cause every player to see a different mob :) )
+
+doRandom: true
+
+# Here you can define
+disguiseTable:
+    - creeper:cow
+    - cow:enderman
+    - chicken:zombie
+    - skeleton:human

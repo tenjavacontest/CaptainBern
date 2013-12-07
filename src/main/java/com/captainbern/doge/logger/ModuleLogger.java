@@ -1,6 +1,6 @@
 package com.captainbern.doge.logger;
 
-import com.captainbern.inkhearth.utils.LogicUtil;
+import com.captainbern.doge.utils.LogicUtils;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 
@@ -30,7 +30,7 @@ public class ModuleLogger extends Logger {
     }
 
     public ModuleLogger getModule(String... path) {
-        return new ModuleLogger(this.getParent(), LogicUtil.appendArray(this.modulePath, path));
+        return new ModuleLogger(this.getParent(), LogicUtils.appendArray(this.modulePath, path));
     }
 
     @Override
