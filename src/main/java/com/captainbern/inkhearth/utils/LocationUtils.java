@@ -2,6 +2,8 @@ package com.captainbern.inkhearth.utils;
 
 import com.captainbern.inkhearth.InkHearth;
 import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,6 +60,39 @@ public class LocationUtils {
             }
         }
         return circle;
+    }
+
+    public static List<Location> getCuboid(Location position1, Location position2, boolean noAir){
+
+        if(position1.getWorld().getName() != position2.getWorld().getName()){
+            throw new UnsupportedOperationException("'Position1' and 'Position2' location need to be in the same world!");
+        }
+
+        List<Location> cube = new ArrayList<Location>();
+
+        int minX = (int) Math.min(position1.getX(), position2.getX());
+        int maxX = (int) Math.max(position1.getX(), position2.getX());
+
+        int minY = (int) Math.min(position1.getY(), position2.getY());
+        int maxY = (int) Math.max(position1.getY(), position2.getY());
+
+        int minZ = (int) Math.min(position1.getZ(), position2.getZ());
+        int maxZ = (int) Math.max(position1.getZ(), position2.getZ());
+
+        for(int x = minX; x <= maxX; x++){
+            for(int y = minY; y <= maxY; y++){
+                for(int z = minZ; z <= maxZ; z++){
+                    if(noAir) {
+                        if(!position1.getWorld().getBlockAt(x, y, z).getType().equals(Material.AIR)) {
+                            cube.add(new Location(position1.getWorld(), x, y, z));
+                        }
+                    }else{
+                        cube.add(new Location(position1.getWorld(), x, y, z));
+                    }
+                }
+            }
+        }
+        return cube;
     }
 
 }

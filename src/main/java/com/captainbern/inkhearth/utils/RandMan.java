@@ -22,4 +22,12 @@ public class RandMan {
     public static int nextInt(int i) {
         return random.nextInt(i);
     }
+
+    /**
+     * Returns a random boolean
+     * @return Returns a random boolean
+     */
+    public static boolean nextBoolean() {
+        return random.nextBoolean();
+    }
 }
