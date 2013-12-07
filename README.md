@@ -1,4 +1,8 @@
-# BetterThanHorses
-I don't know the theme yet and I don't know what to code yet, but I do know my code is
-going to be better than horses. #VoteForBern!
+# BetterThanHorses AKA InkHearth
+
+This plugin adds the same functionality to books as seen in the book "InkHearth".
+However due to the limitations of minecraft I can't make it perfect :(
+The Plugin will let several things happen when a player opens a book.
+Sever creatures will spawn, there will be storms and stuff.
+
 ![alt tag](http://www.cs.washington.edu/education/courses/cse142/07wi/homework/a4/student_pictures/image318.png)
