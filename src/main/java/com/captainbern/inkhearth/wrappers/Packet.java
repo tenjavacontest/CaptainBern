@@ -9,10 +9,19 @@ public class Packet extends BasicWrapper{
      * other packet wrappers :)
      */
 
+    /**
+     * Constructs a new packet wrapper.
+     * @param packetName
+     */
     public Packet(String packetName) {
        super(ReflectionUtil.getNMSClass(packetName));
     }
 
+    /**
+     * Sets a field value in the given packet class.
+     * @param field The field name.
+     * @param value The value to be set.
+     */
     public void setField(String field, Object value) {
         ReflectionUtil.setField(getHandle(), field, value);
     }

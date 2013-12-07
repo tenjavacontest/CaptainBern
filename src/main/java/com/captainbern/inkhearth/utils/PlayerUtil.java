@@ -13,8 +13,13 @@ public class PlayerUtil {
      * Class used to send packets to players yippie kayee
      */
 
+    /**
+     * Sends a packet to a player.
+     * @param player The player the packet needs to be send to.
+     * @param packet The packet object.
+     */
     public static void sendPacket(Player player, Packet packet) {
-        Method sendPacket = ReflectionUtil.getMethod(ReflectionUtil.getNMSClass("playerConnection"), "sebdPacket", ReflectionUtil.getNMSClass("Packet"));
+        Method sendPacket = ReflectionUtil.getMethod(ReflectionUtil.getNMSClass("playerConnection"), "sendPacket", ReflectionUtil.getNMSClass("Packet"));
         Object playerConnection = getPlayerConnection(player);
 
         try {
@@ -24,6 +29,11 @@ public class PlayerUtil {
         }
     }
 
+    /**
+     * Converts a Bukkit player to an NMS player.
+     * @param player The player that needs to be converted.
+     * @return The NMS player object.
+     */
     public static Object playerToEntityPlayer(Player player) {
         Method getHandle = ReflectionUtil.getMethod(player.getClass(), "getHandle");
         try {
@@ -34,6 +44,11 @@ public class PlayerUtil {
         }
     }
 
+    /**
+     * Used to obtain the PlayerConnection of a player.
+     * @param player The player we need to get the connection of.
+     * @return The PlayerConnection object.
+     */
     public static Object getPlayerConnection(Player player) {
         Object playerConnection = ReflectionUtil.getField(ReflectionUtil.getNMSClass("EntityPlayer"), "playerConnection", player);
         return playerConnection;

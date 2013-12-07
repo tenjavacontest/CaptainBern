@@ -7,6 +7,11 @@ import org.bukkit.entity.Player;
 
 public class BlockUtils {
 
+    /**
+     * Makes a block appear cracked.
+     * @param block The block, this can be an air block, water block or a normal block.
+     * @param cracks The level of brokenness this needs to be an int between 0 and 7.
+     */
     public static void setCracking(Block block, int cracks) {
         Packet55BlockBreakAnimation packet = new Packet55BlockBreakAnimation();
         packet.setDamage(cracks);
