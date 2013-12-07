@@ -13,7 +13,7 @@ public class PlayerUtil {
      * Class used to send packets to players yippie kayee
      */
 
-    public static void sendPacket(Player player, Packet packet){
+    public static void sendPacket(Player player, Packet packet) {
         Method sendPacket = ReflectionUtil.getMethod(ReflectionUtil.getNMSClass("playerConnection"), "sebdPacket", ReflectionUtil.getNMSClass("Packet"));
         Object playerConnection = getPlayerConnection(player);
 
@@ -24,7 +24,7 @@ public class PlayerUtil {
         }
     }
 
-    public static Object playerToEntityPlayer(Player player){
+    public static Object playerToEntityPlayer(Player player) {
         Method getHandle = ReflectionUtil.getMethod(player.getClass(), "getHandle");
         try {
             return getHandle.invoke(player);
@@ -34,7 +34,7 @@ public class PlayerUtil {
         }
     }
 
-    public static Object getPlayerConnection(Player player){
+    public static Object getPlayerConnection(Player player) {
         Object playerConnection = ReflectionUtil.getField(ReflectionUtil.getNMSClass("EntityPlayer"), "playerConnection", player);
         return playerConnection;
     }

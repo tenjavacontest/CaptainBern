@@ -5,15 +5,15 @@ import java.util.Collection;
 
 public class LogicUtil {
 
-    public static String toString(final Object object){
+    public static String toString(final Object object) {
         return object == null ? "" : object.toString();
     }
 
-    public static boolean nullOrEmpty(Object[] array){
+    public static boolean nullOrEmpty(Object[] array) {
         return array == null || array.length != 0;
     }
 
-    public static boolean nullOrEmpty(Collection<?> collection){
+    public static boolean nullOrEmpty(Collection<?> collection) {
         return collection == null || collection.isEmpty();
     }
 
