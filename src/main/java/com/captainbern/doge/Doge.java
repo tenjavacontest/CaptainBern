@@ -6,13 +6,19 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.List;
+
 public class Doge extends JavaPlugin {
 
     public static final ModuleLogger LOGGER = new ModuleLogger("DogeDisguise");
     public static final ModuleLogger LOGGER_REFLECTION = LOGGER.getModule("Reflection");
 
+    private static Doge INSTANCE;
+
     public static boolean DO_RANDOM;
+    public static boolean USE_NAMES;
     public static EntityTable TABLE;
+    public static List<String> NAMES;
 
     @Override
     public void onDisable() {
@@ -24,12 +30,26 @@ public class Doge extends JavaPlugin {
         saveDefaultConfig();
 
         DO_RANDOM = getConfig().getBoolean("doRandom");
+        USE_NAMES = getConfig().getBoolean("useNames");
 
         if(!DO_RANDOM) {
             TABLE = new EntityTable(getConfig().getStringList("disguiseTable"));
         }
 
+        if(USE_NAMES) {
+            NAMES = getConfig().getStringList("names");
+        }
+
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new PlayerListener(), this);
+
+        INSTANCE = this;
+    }
+
+    public static Doge getInstance() {
+        if(INSTANCE == null) {
+            LOGGER.warning("Plugin not enabled!");
+        }
+        return INSTANCE;
     }
 }

@@ -20,10 +20,10 @@ public class EntityTable {
         }
     }
 
-    public int getDisguiseIdFor(EntityType type) {
+    public EntityType getDisguiseIdFor(EntityType type) {
         if(!LOOKUP.containsKey(type))
-            return type.getTypeId();
-        return LOOKUP.get(type).getTypeId();
+            return type;
+        return LOOKUP.get(type);
     }
 
     public HashMap<EntityType, EntityType> getLookUpTable() {

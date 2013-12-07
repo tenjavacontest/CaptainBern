@@ -1,11 +1,24 @@
 # Here you can define what mob should be disguised as what. You can also set it to random
 # (setting it to random will cause every player to see a different mob :) )
 
-doRandom: true
+doRandom: false
 
 # Here you can define
 disguiseTable:
     - creeper:cow
-    - cow:enderman
-    - chicken:zombie
-    - skeleton:human
+    - cow:player
+    - chicken:player
+
+# Here you can set different names that will be randomly used to name the npc's.
+# useNames: shall the plugin use these random names? If this is false then the
+# plugin will give the npc's the name of their origin entity. eg: a chicken gets
+# disguised as a human, if useNames is false then the npc name will be "chicken".
+useNames: true
+names:
+    - Earl
+    - TnTBass
+    - CaptainBern
+    - Necrodoom
+    - lol768
+    - Hawkfalcon
+    - drtshock

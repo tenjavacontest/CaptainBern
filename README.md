@@ -1,6 +1,6 @@
 # DogeDisguise
 
-My submission for the ten.java plugin contest.
+My submission for the ten.java plugin contest. (the one that started at 4pm)
 
 This plugin can only be used on CraftBukkit 1.6.4.
 

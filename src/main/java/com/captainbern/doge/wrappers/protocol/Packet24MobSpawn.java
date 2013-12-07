@@ -9,9 +9,9 @@ public class Packet24MobSpawn extends Packet {
 
     public Packet24MobSpawn() {
         super("Packet24MobSpawn");
-        setField("f", 3.9D * 8000.0D);
-        setField("g", 3.9D * 8000.0D);
-        setField("h", 3.9D * 8000.0D);
+        setField("f", 0);
+        setField("g", 0);
+        setField("h", 0);
     }
 
     public void setId(int id) {
@@ -23,14 +23,14 @@ public class Packet24MobSpawn extends Packet {
     }
 
     public void setLocation(Location location) {
-        setField("c", location.getX());
+        setField("c", (int) location.getX());
         setField("d", MathUtils.floor(location.getY()));
-        setField("e", location.getZ());
+        setField("e", (int) location.getZ());
         setField("i", MathUtils.asCompressedAngle(location.getYaw()));
         setField("j", MathUtils.asCompressedAngle(location.getPitch()));
     }
 
-    public void setAP(float ap) {
+    public void setAP(byte ap) {
         setField("k", ap);
     }
 
