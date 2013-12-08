@@ -3,7 +3,8 @@
 
 doRandom: false
 
-# Here you can define
+# Here you can define the disguises, format like this: entity:diguise-to;
+# eg: chicken:cow will disguise chickens as cows.
 disguiseTable:
     - creeper:cow
     - cow:player

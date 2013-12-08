@@ -1,7 +1,6 @@
 package com.captainbern.doge.netty;
 
 import com.captainbern.doge.reflection.ReflectionUtil;
-import com.captainbern.doge.utils.PacketUtils;
 import com.captainbern.doge.wrappers.DataWatcher;
 import com.captainbern.doge.wrappers.protocol.PacketPlayOutNamedEntitySpawn;
 import net.minecraft.util.com.mojang.authlib.GameProfile;
