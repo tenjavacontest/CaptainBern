@@ -7,11 +7,14 @@ public class BasicWrapper {
 
     protected Object handle;
 
+    public BasicWrapper() {}
+
     public BasicWrapper(String className) {
         try {
             setHandle(ReflectionUtil.getNMSClass(className).newInstance());
         } catch (Exception e) {
             Doge.LOGGER_REFLECTION.warning("Could not set handle!");
+            e.printStackTrace();
         }
     }
 

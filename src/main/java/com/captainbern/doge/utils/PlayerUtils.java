@@ -3,11 +3,15 @@ package com.captainbern.doge.utils;
 import com.captainbern.doge.Doge;
 import com.captainbern.doge.reflection.ReflectionUtil;
 import com.captainbern.doge.wrappers.protocol.Packet;
+import net.minecraft.util.io.netty.channel.Channel;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class PlayerUtils {
+
+    private static final Field channelField = ReflectionUtil.getField(ReflectionUtil.getNMSClass("NetworkManager"), "k");
 
     public static void sendPacket(Player player, Packet packet){
         Method sendPacket = ReflectionUtil.getMethod(ReflectionUtil.getNMSClass("PlayerConnection"), "sendPacket", ReflectionUtil.getNMSClass("Packet"));
@@ -33,5 +37,23 @@ public class PlayerUtils {
     public static Object getPlayerConnection(Player player){
         Object connection = ReflectionUtil.getField(ReflectionUtil.getNMSClass("EntityPlayer"), "playerConnection", playerToEntityPlayer(player));
         return connection;
+    }
+
+    public static Object getNetworkManager(Player player) {
+        try {
+            return ReflectionUtil.getField(getPlayerConnection(player).getClass(), "networkManager").get(getPlayerConnection(player));
+        } catch (IllegalAccessException e) {
+            Doge.LOGGER_REFLECTION.warning("Failed to get the NetworkManager of player: " + player.getName());
+            return null;
+        }
+    }
+
+    public static Channel getChannel(Player player) {
+        try {
+            return (Channel) channelField.get(getNetworkManager(player));
+        } catch (IllegalAccessException e) {
+            Doge.LOGGER_REFLECTION.warning("Failed to get the channel of player: " + player.getName());
+            return null;
+        }
     }
 }

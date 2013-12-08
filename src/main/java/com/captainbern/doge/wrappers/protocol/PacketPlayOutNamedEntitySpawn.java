@@ -2,20 +2,21 @@ package com.captainbern.doge.wrappers.protocol;
 
 import com.captainbern.doge.utils.MathUtils;
 import com.captainbern.doge.wrappers.DataWatcher;
+import net.minecraft.util.com.mojang.authlib.GameProfile;
 import org.bukkit.Location;
 
-public class Packet20NamedEntitySpawn extends Packet {
+public class PacketPlayOutNamedEntitySpawn extends Packet {
 
-    public Packet20NamedEntitySpawn() {
-          super("Packet20NamedEntitySpawn");
+    public PacketPlayOutNamedEntitySpawn() {
+        super("PacketPlayOutNamedEntitySpawn");
     }
 
     public void setId(int id) {
         setField("a", id);
     }
 
-    public void setName(String name) {
-        setField("b", name);
+    public void setGameProfile(GameProfile profile) {
+        setField("b", profile);
     }
 
     public void setLocation(Location location) {

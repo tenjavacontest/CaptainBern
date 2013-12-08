@@ -24,7 +24,7 @@ public class Doge extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+         //boring lol
     }
 
     @Override
@@ -46,8 +46,6 @@ public class Doge extends JavaPlugin {
         pluginManager.registerEvents(new PlayerListener(), this);
 
         INSTANCE = this;
-
-        checkEntities();
     }
 
     public static Doge getInstance() {
@@ -55,13 +53,5 @@ public class Doge extends JavaPlugin {
             LOGGER.warning("Plugin not enabled!");
         }
         return INSTANCE;
-    }
-
-    private void checkEntities() {
-        for(World world : Bukkit.getWorlds()) {
-            for(Entity entity : world.getEntities()) {
-                PlayerListener.disguiseMob(entity);
-            }
-        }
     }
 }
