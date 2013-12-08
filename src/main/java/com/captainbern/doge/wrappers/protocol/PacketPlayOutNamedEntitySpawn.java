@@ -17,7 +17,7 @@ public class PacketPlayOutNamedEntitySpawn extends Packet {
     }
 
     public void setId() {
-        setField("a", (Integer) ReflectionUtil.getField(originalPacket.getClass(), "a", originalPacket));
+        setField("a", ReflectionUtil.getField(originalPacket.getClass(), "a", originalPacket));
     }
 
     public void setGameProfile(GameProfile profile) {
