@@ -28,6 +28,12 @@ public class DisguiseUtils {
         }
     }
 
+    /**
+     * Disguises the mob
+     * @param mob
+     * @param originalPacket
+     * @return
+     */
     private static Object disguiseMob(EntityType mob, Object originalPacket) {
         if(Doge.DO_RANDOM) {
 
@@ -40,7 +46,6 @@ public class DisguiseUtils {
                     PacketFactory.generatePlayerPacket(originalPacket, disguise.getEntityClass().getSimpleName());
                 }
             } else {
-
                 return PacketFactory.generateMobPacket(originalPacket, disguise);
             }
 
@@ -57,6 +62,7 @@ public class DisguiseUtils {
             EntityType disguise = table.getDisguiseIdFor(type);
 
             if(disguise.equals(EntityType.PLAYER)) {
+
                 if(Doge.USE_NAMES) {
                       PacketFactory.generatePlayerPacket(originalPacket, Doge.NAMES.get(RandMan.nextInt(Doge.NAMES.size())));
                 } else {

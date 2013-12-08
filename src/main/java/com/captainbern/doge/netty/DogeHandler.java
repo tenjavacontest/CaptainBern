@@ -10,9 +10,9 @@ public class DogeHandler extends ChannelOutboundHandlerAdapter {
     @Override
     public void write(ChannelHandlerContext ctx, Object packet, ChannelPromise promise) throws Exception {
 
-        packet = DisguiseUtils.filterPacket(packet);
+        Object newPacket = DisguiseUtils.filterPacket(packet);
 
-        super.write(ctx, packet, promise);
+        super.write(ctx, newPacket, promise);
     }
 
 }

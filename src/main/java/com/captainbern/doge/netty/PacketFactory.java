@@ -9,22 +9,36 @@ import org.bukkit.entity.EntityType;
 
 public class PacketFactory {
 
+    /**
+     * Generates a packet object.
+     * @param sourcePacket
+     * @param newType
+     * @return
+     */
     public static Object generateMobPacket(Object sourcePacket, EntityType newType) {
         ReflectionUtil.setField(sourcePacket.getClass(), "b", sourcePacket, newType.getTypeId());
         return sourcePacket;
     }
 
+    /**
+     * Generated a packet object
+     * @param sourePacket
+     * @param name
+     * @return
+     */
     public static Object generatePlayerPacket(Object sourePacket, String name) {
 
         PacketPlayOutNamedEntitySpawn packet = new PacketPlayOutNamedEntitySpawn();
-        packet.setId((Integer) ReflectionUtil.getField(sourePacket.getClass(), "a", sourePacket));
-        packet.setGameProfile(new GameProfile(String.valueOf(PacketUtils.getMobId(sourePacket)), name));
-        packet.setLocation(PacketUtils.getLocation(sourePacket));
+        packet.setOriginalMobPacket(sourePacket);
+        packet.setId();
+        packet.setGameProfile(new GameProfile("IMA FAKE ROFL TROLL", name));
+        packet.setLocation();
+        packet.setItemInHand(0);
 
         DataWatcher dataWatcher = new DataWatcher();
-        dataWatcher.write(0, (Object) (byte) 0);
-        dataWatcher.write(1, (Object) (short) 0);
-        dataWatcher.write(8, (Object) (byte) 0);
+        dataWatcher.write(0, (byte) 0);
+        dataWatcher.write(1, (short) 0);
+        dataWatcher.write(8, (byte) 0);
 
         packet.setDataWatcher(dataWatcher);
 

@@ -13,12 +13,12 @@ public class PlayerUtils {
 
     private static final Field channelField = ReflectionUtil.getField(ReflectionUtil.getNMSClass("NetworkManager"), "k");
 
-    public static void sendPacket(Player player, Packet packet){
+    public static void sendPacket(Player player, Object packet){
         Method sendPacket = ReflectionUtil.getMethod(ReflectionUtil.getNMSClass("PlayerConnection"), "sendPacket", ReflectionUtil.getNMSClass("Packet"));
         Object playerConnection = getPlayerConnection(player);
 
         try {
-            sendPacket.invoke(playerConnection, packet.getHandle());
+            sendPacket.invoke(playerConnection, packet);
         } catch (Exception e) {
             Doge.LOGGER_REFLECTION.warning("Failed to retrieve the PlayerConnection of: " + player.getName());
         }

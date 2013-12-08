@@ -1,30 +1,36 @@
 package com.captainbern.doge.wrappers.protocol;
 
-import com.captainbern.doge.utils.MathUtils;
+import com.captainbern.doge.reflection.ReflectionUtil;
 import com.captainbern.doge.wrappers.DataWatcher;
 import net.minecraft.util.com.mojang.authlib.GameProfile;
-import org.bukkit.Location;
 
 public class PacketPlayOutNamedEntitySpawn extends Packet {
+
+    private Object originalPacket;
 
     public PacketPlayOutNamedEntitySpawn() {
         super("PacketPlayOutNamedEntitySpawn");
     }
 
-    public void setId(int id) {
-        setField("a", id);
+    public void setOriginalMobPacket(Object packet) {
+        this.originalPacket = packet;
+    }
+
+    public void setId() {
+        setField("a", (Integer) ReflectionUtil.getField(originalPacket.getClass(), "a", originalPacket));
     }
 
     public void setGameProfile(GameProfile profile) {
         setField("b", profile);
     }
 
-    public void setLocation(Location location) {
-        setField("c", MathUtils.floor(location.getX()));
-        setField("d", MathUtils.floor(location.getY()));
-        setField("e", MathUtils.floor(location.getZ()));
-        setField("f", MathUtils.asCompressedAngle(location.getYaw()));
-        setField("g", MathUtils.asCompressedAngle(location.getPitch()));
+    public void setLocation() {
+        setField("c", ReflectionUtil.getField(originalPacket.getClass(), "c", originalPacket));
+        setField("d", ReflectionUtil.getField(originalPacket.getClass(), "d", originalPacket));
+        setField("e", ReflectionUtil.getField(originalPacket.getClass(), "e", originalPacket));
+
+        setField("i", ReflectionUtil.getField(originalPacket.getClass(), "i", originalPacket));
+        setField("j", ReflectionUtil.getField(originalPacket.getClass(), "j", originalPacket));
     }
 
     public void setItemInHand(int id) {
@@ -32,6 +38,6 @@ public class PacketPlayOutNamedEntitySpawn extends Packet {
     }
 
     public void setDataWatcher(DataWatcher watcher) {
-        setField("i", watcher.getHandle());
+        setField("l", watcher.getHandle());
     }
 }

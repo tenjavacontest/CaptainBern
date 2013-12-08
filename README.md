@@ -4,7 +4,7 @@ Start time: 4pm (UTC)
 
 Theme: Entities
 
-CB Build: 1.6.4
+CB Build: 1.7.2
 
 # Description
 This plugin will disguise mobs as something else. You can either define a disguise for
