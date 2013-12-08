@@ -29,8 +29,8 @@ public class PacketPlayOutNamedEntitySpawn extends Packet {
         setField("d", ReflectionUtil.getField(originalPacket.getClass(), "d", originalPacket));
         setField("e", ReflectionUtil.getField(originalPacket.getClass(), "e", originalPacket));
 
-        setField("i", ReflectionUtil.getField(originalPacket.getClass(), "i", originalPacket));
-        setField("j", ReflectionUtil.getField(originalPacket.getClass(), "j", originalPacket));
+        setField("f", ReflectionUtil.getField(originalPacket.getClass(), "i", originalPacket));
+        setField("g", ReflectionUtil.getField(originalPacket.getClass(), "j", originalPacket));
     }
 
     public void setItemInHand(int id) {
@@ -38,6 +38,6 @@ public class PacketPlayOutNamedEntitySpawn extends Packet {
     }
 
     public void setDataWatcher(DataWatcher watcher) {
-        setField("l", watcher.getHandle());
+        setField("i", watcher.getHandle());
     }
 }
