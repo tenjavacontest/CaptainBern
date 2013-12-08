@@ -15,6 +15,7 @@ disguiseTable:
 # useNames: shall the plugin use these random names? If this is false then the
 # plugin will give the npc's the name of their origin entity. eg: a chicken gets
 # disguised as a human, if useNames is false then the npc name will be "chicken".
+# THIS DOESN'T WORK BECAUSE SOMETHING
 useNames: true
 names:
     - Earl
